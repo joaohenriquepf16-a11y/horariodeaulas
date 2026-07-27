@@ -977,7 +977,7 @@ function seedIfEmpty() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+function init() {
   load();
   seedIfEmpty();
   $("#className").value = state.className || "";
@@ -986,4 +986,10 @@ document.addEventListener("DOMContentLoaded", () => {
   resetSubjectsBuilder();
   renderTeachers();
   renderGrid();
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", init);
+} else {
+  init();
+}
